@@ -7,11 +7,13 @@
   var minutes = document.querySelector('.elapsed-time .minutes');
   var seconds = document.querySelector('.elapsed-time .seconds');
 
-  console.log(myStartButton);
 
   function toggleButton(){
-      myStartButton.style.backgroundColor = 'red';
-      myStartButton.textContent = 'Stop';
+    var buttonTxt = myStartButton.textContent;
+    var started = buttonTxt === 'Start';
+
+    myStartButton.style.backgroundColor = started ? 'red' : 'green';
+    myStartButton.textContent = started ? 'Stop' : 'Start';
   }
 
   function milliscondsToInterval(ms){
@@ -22,11 +24,7 @@
     var msInSec = 1000;
 
     var hours = Math.floor(msLeft / msInHour);
-    msLeft = msLeft % msInHour;
-
     var minutes = Math.floor(msLeft / msInMin);
-    msLeft = msLeft % msInMin;
-
     var seconds = Math.floor(msLeft / msInSec);
 
     return [hours, minutes, seconds];
